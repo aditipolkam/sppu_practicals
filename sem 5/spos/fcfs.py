@@ -1,12 +1,11 @@
 def calculate_time(atime,btime,ctime,ttime,wtime):
-    #ctime.append(btime[0])
-    etime = 0
+    etime = 0 #execution time for all 
     for i in range(0,len(atime)):
-        if atime[i]<=etime:
+        if atime[i]<=etime:   #check if arrival time is less/equal to total execution time done
             c = etime + btime[i]
             etime=c
         else:
-            etime=atime[i]
+            etime=atime[i]  #make execution time as arrival time of next process as CPU in idle state
             c=etime + btime[i]
             etime=c
         ctime.append(c)
@@ -27,15 +26,19 @@ def avg_time(atime,ttime,wtime):
     print("Avg tat:",st/p)
     print("Avg wait time:",sw/p)
         
-atime = []
-btime = []
-ctime = []
-ttime = []
-wtime = []
+atime = [] #arrival time
+btime = [] #burst time
+ctime = [] #completion time
+ttime = [] #turn around time
+wtime = [] #wait time
 
-num = int(input("No of process?"))
+num = int(input("No of processes?"))
 for i in range(num):
-    atime.append(int(input("Arrival time of p")))
-    btime.append(int(input("Burst time of p")))
+    a = "Arrival time of p" + str(i+1) + ":"
+    b = "Burst time of p" + str(i+1) + ":"
+    atime.append(int(input(a)))
+    btime.append(int(input(b)))
+
+
 calculate_time(atime,btime,ctime,ttime,wtime)
 avg_time(atime,ttime,wtime)
